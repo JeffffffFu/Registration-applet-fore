@@ -1,0 +1,22 @@
+{
+  "pages": [
+  "pages/create_match/create_match",
+  "pages/index/index",
+   "pages/date/date",
+     "utils/utils",
+  "pages/test3/test3",
+    "pages/match_information/match_information"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小捷足球",
+    "navigationBarTextStyle": "black"
+  },
+    "networkTimeout": {
+      "request": 1000000,
+      "connectSocket": 100000,
+      "uploadFile": 100000,
+      "downloadFile": 100000
+    }
+}

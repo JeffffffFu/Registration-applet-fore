@@ -1,0 +1,44 @@
+/* pages/match_information/match_information.wxss */
+  .style{
+   margin-top: 25rpx;
+   background-color:#F8F8FF;
+   width: 100%;
+   height: 500rpx ;
+   margin: auto;
+   text-align: center;
+   display: flex;
+   flex-direction: column
+  }
+   .style2{
+   margin-top: 25rpx;
+   background-color:#F8F8FF;
+   width: 100%;
+   height: 300rpx ;
+  }
+.layout_horizontal{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  border-radius: 50%;
+}
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+ 
+.userinfo-nickname {
+  color: #aaa;
+}
+.sponsor{
+  position: absolute;
+  right:30rpx;
+}

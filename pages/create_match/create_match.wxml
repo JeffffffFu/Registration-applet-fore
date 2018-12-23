@@ -1,0 +1,45 @@
+<view class="layout_horizontal">
+<view class="{{aa?'empyte':''}}">比赛主题：</view>
+<input  placeholder="请输入比赛主题/对手名" bindinput='match_theme_input'>
+</input>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view class="layout_horizontal">
+<view class="{{bb?'empyte':''}}">比赛时间：</view>
+<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+<input value='{{match_time}}' placeholder='点击选择时间'/>
+  </picker>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view class="layout_horizontal" >
+<view class="{{cc?'':'empyte'}}">比赛场地：</view>
+<input  placeholder="请输入比赛场地" bindtap="chooseLocation" value="{{match_address}}"></input>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view  class="layout_horizontal">
+<view>比赛赛制：</view>
+<view class="{{isChecked1?'normal1':'isChecked2'}}" 
+bindtap='choose1' style="font-size:88%">11人制</view>
+<view class="{{isChecked2?'normal2':'isChecked2'}}" bindtap='choose2'style="font-size:90%">9人制</view>
+<view class="{{isChecked3?'normal3':'isChecked3'}}" bindtap='choose3'style="font-size:90%">7人制</view>
+<view class="{{isChecked4?'normal4':'isChecked4'}}" bindtap='choose4'style="font-size:90%">5人制</view></view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view class="layout_horizontal">
+<view>队服颜色：</view>
+<input  placeholder="请输入队服颜色" bindinput='match_color_input'></input>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view class="layout_horizontal">
+<view>比赛备注：</view>
+<input  placeholder="有什么要提醒大家的" bindinput='match_remarks_input'></input>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+
+<view style='margin-top:200rpx;'>
+<button type="primary" bindtap='create_button'>发布比赛</button>
+</view>

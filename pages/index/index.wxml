@@ -1,0 +1,29 @@
+<!-- <view class='match_information' >
+<text style='margin-top:20rpx;font-width:600rpx;font-size:larger'>{{item.match_theme}}</text>
+<view style='width:100%;height:1px;background:#C0C0C0;margin-top:20rpx'></view>
+<text style='margin-top:30rpx'>{{item.match_time}}</text>
+<text style='margin-top:10rpx;font-size:smaller'>{{item.address}}</text>
+</view> -->
+
+<!-- <view class='match_information' style='margin-top:30rpx' wx:for="{{list_index}}" wx:key="list_index_id" > -->
+<!-- <view class='match_information' >
+<text style='margin-top:20rpx;font-width:600rpx;font-size:larger'>{{item.match_theme}}</text>
+<view style='width:100%;height:1px;background:#C0C0C0;margin-top:20rpx'></view>
+<text style='margin-top:30rpx'>{{item.match_time}}</text>
+<text style='margin-top:10rpx;font-size:smaller'>{{item.address}}</text>
+</view> -->
+
+<view class='match_information'  style='margin-top:30rpx' wx:for="{{list_index}}" wx:key="list_index_id"  >
+<!-- 循环index数组 -->
+<navigator url='../match_information/match_information?id={{index}}&symbol=小程序内部流程进入&uuid={{item.uuid}}&time={{item.time}}' style='height:100%; width:100%'> 
+<view style='margin-top:20rpx;font-width:600rpx;font-size:40rpx;display:block'>{{index+1}}-{{item.theme}}
+<image  class='icon'  src='{{item.match_status==3?icon_expired:item.match_status==1?icon_registered:item.match_status==2?icon_leaved:icon_toSighUp}}'> </image>
+</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-top:20rpx'></view>
+<view style='margin-top:25rpx;font-size:30rpx;font-weight:300'>{{item.time}}</view>
+<view style='margin-top:10rpx;font-size:25rpx'>{{item.address}}</view>
+</navigator>
+</view>
+
+<button type="primary" bindtap="create" class="address" > 发布比赛 </button>
+
