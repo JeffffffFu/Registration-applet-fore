@@ -4,7 +4,9 @@
 
 
 <view class="layout_horizontal">比赛时间：{{information_list.time}}</view>
+<view bindtap='openLocation'>
 <view class="layout_horizontal">比赛地点：{{information_list.address}}</view>
+</view>
 <view class="layout_horizontal">比赛赛制：{{information_list.rule}}</view>
 <view class="layout_horizontal">队服颜色：{{information_list.color}}</view>
 <view class="layout_horizontal">备注提醒：{{information_list.remarks}}</view>

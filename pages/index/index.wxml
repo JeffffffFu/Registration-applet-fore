@@ -21,7 +21,7 @@
 </view>
 <view style='width:100%;height:2rpx;background:#C0C0C0;margin-top:20rpx'></view>
 <view style='margin-top:25rpx;font-size:30rpx;font-weight:300'>{{item.time}}</view>
-<view style='margin-top:10rpx;font-size:25rpx'>{{item.address}}</view>
+<view style='margin-top:10rpx;font-size:25rpx' >{{item.address}}</view>
 </navigator>
 </view>
 

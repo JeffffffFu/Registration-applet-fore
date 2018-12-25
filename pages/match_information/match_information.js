@@ -179,6 +179,12 @@ Page({
       }
     }
 
+  },
+  openLocation: function () {
+    wx.openLocation({
+      latitude: getApp().globalData.latitude,
+      longitude: getApp().globalData.longitude,
+    })
   }
 
 })

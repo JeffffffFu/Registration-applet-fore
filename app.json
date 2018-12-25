@@ -1,10 +1,10 @@
 {
   "pages": [
+  
+    "pages/index/index",
   "pages/create_match/create_match",
-  "pages/index/index",
-   "pages/date/date",
-     "utils/utils",
-  "pages/test3/test3",
+ 
+
     "pages/match_information/match_information"
   ],
   "window": {
