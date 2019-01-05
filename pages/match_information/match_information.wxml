@@ -1,35 +1,36 @@
 <view class='style'>
-<view style='margin-top:20rpx'>{{information_list.theme}}</view>
-<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
+<view style='font-width:650rpx;font-size:45rpx;margin-top:30rpx'>{{information_list.theme}}</view>
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-bottom:30rpx;margin-top:30rpx'></view>
 
-
-<view class="layout_horizontal">比赛时间：{{information_list.time}}</view>
+<view class="layout_horizontal">比赛时间：{{information_list.time}} {{information_list.week}}</view>
 <view bindtap='openLocation'>
 <view class="layout_horizontal">比赛地点：{{information_list.address}}</view>
 </view>
-<view class="layout_horizontal">比赛赛制：{{information_list.rule}}</view>
-<view class="layout_horizontal">队服颜色：{{information_list.color}}</view>
-<view class="layout_horizontal">备注提醒：{{information_list.remarks}}</view>
+<view class="{{information_list.rule==''?'view_hide':'layout_horizontal'}}" >比赛赛制：{{information_list.rule}}</view>
+<view class="{{information_list.color==''?'view_hide':'layout_horizontal'}}">队服颜色：{{information_list.color}}</view>
+<view class="{{information_list.remarks==''?'view_hide':'layout_horizontal'}}">备注提醒：{{information_list.remarks}}</view>
 </view>
 
-<view class='style2'>
-<view style='margin-left:10rpx;margin-top:20rpx'>报名队员</view>
-<view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
-<view  wx:for="{{join_information}}" wx:key="join_information_id">
-<view class='view_show'>
+<view class="style2" style="display:{{join_count==0?'none':'block'}}">
+<view style='padding-top:20rpx;padding-left:10rpx'>报名队员({{join_count}})</view> 
+<view style='width:100%;height:2rpx;background:#C0C0C0;margin-top:20rpx'></view>
+<view class='view_show2'>
+<view  class='view_show' wx:for="{{join_information}}" wx:key="join_information_id">
 <image class="userinfo-avatar"  src="{{item.user_url}}" ></image>
 <text class="userinfo-nickname">{{item.user_name}}</text>
 </view>
 </view>
 </view>
 
-<view class='style2'>
-<view style='margin-left:10rpx;margin-top:20rpx'>请假队员</view>
+<view class="style2" style="display:{{leave_count==0?'none':'block'}}">
+<view style='padding-top:20rpx;padding-left:10rpx'>请假队员({{leave_count}})</view>
 <view style='width:100%;height:2rpx;background:#C0C0C0;margin-left:10rpx;margin-top:20rpx'></view>
-<view  wx:for="{{leave_information}}" wx:key="leave_information_id">
+ <view class='view_show2'>
+<view   wx:for="{{leave_information}}" wx:key="leave_information_id">
 <view class='view_show'>
 <image class="userinfo-avatar"  src="{{item.user_url}}" ></image>
 <text class="userinfo-nickname">{{item.user_name}}</text>
+</view>
 </view>
 </view>
 </view>
@@ -38,9 +39,14 @@
 <view style='margin-top:20rpx;font-size:25rpx'>发布人：{{information_list.sponsor}}</view>
 </view>
 
+<view class="content" style="display:{{information_list.match_status==3?'none':''}}">
+<button style="width:100rpx;border-radius: 0;font-size:23rpx"  bindtap='edit'> 编辑 </button>
+<button  style="width:100rpx;border-radius: 0;font-size:23rpx" id="shareBtn" open-type="share"hover-class="other-button-hover"> 分享 </button>
+<button style="width:280rpx;border-radius: 0" type="warn" open-type='getUserInfo' lang="zh_CN"  bindtap="user_leave"disabled="{{disabled_leave}}">请假</button>
+<button style="width:280rpx;border-radius: 0;color:white" open-type='getUserInfo' lang="zh_CN" type="primary" bindtap="user_join" disabled="{{disabled_join}}">报名</button>
+</view>
 
-<button open-type='getUserInfo' lang="zh_CN"  bindtap="user_join" style='margin-top:80rpx'disabled="{{disabled_join}}">报名</button>
-<button open-type='getUserInfo' lang="zh_CN"  bindtap="user_leave"disabled="{{disabled_leave}}">请假</button>
-
-<button  id="shareBtn" open-type="share" type="primary" hover-class="other-button-hover"> 分享 </button>
+<view class="content2"style="display:{{information_list.match_status==3?'block':'none'}}">
+<button style="width:760rpx;border-radius: 0" disabled="true">已结束</button>
+</view>
 

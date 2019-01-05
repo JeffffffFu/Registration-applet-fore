@@ -1,15 +1,15 @@
-
+var app=getApp();
 Page(
   {
     //设置变量，以便存储输入的数据
     data:{
         match_theme:'',
         match_time:'',
+        match_week:'',
         match_address:'',
         match_address_name:'',
         match_rule:'',
         match_color:'',
-        match_people:'',
         match_remarks:'',
         user_nickName: "微信账号登录",
         user_avatarUrl: "./user-unlogin.png",
@@ -22,19 +22,12 @@ Page(
         { name: '9人制', value: '9人制' },
         { name: '7人制', value: '7人制', checked: 'true' },
         { name: '5人制', value: '5人制' },
-      ],
+      ]
        
-       
-      //单选按钮
-      isChecked1: false,
-      isChecked1: false,
-      isChecked1: false,
-      isChecked1: false,
-     
     },
     
 
-    //将输入文本框的值，分别赋值给变量
+    //比赛主题
      match_theme_input:function(e){
       this.setData({
         match_theme: e.detail.value
@@ -43,35 +36,32 @@ Page(
 
     //获取时间日期
     bindSelect: function (e) {
-      console.log(e.detail)//选择结果值
+      console.log("时间：",e.detail)//选择结果值
       this.setData({
-        match_time:e.detail
+        match_time:e.detail[0],
+        match_week:e.detail[1]
+
       })
     },
 
-   
+    //队服颜色
     match_color_input: function (e) {
       this.setData({
         match_color: e.detail.value
       })
     },
 
-
+   //备注
     match_remarks_input: function (e) {
       this.setData({
         match_remarks: e.detail.value
       })
     },
-
-    radioChange: function (e) {
-      this.setData({
-        match_rule: e.detail.value
-      })
-    },
-       //点击按钮，将获取到的值赋值给数组
+       //点击按钮，将值传给后端
        create_button: function (e) {
          var that=this;
          var app=getApp();
+         //判断主题时间地址是否填写，进行逻辑交互处理
          if (that.data.match_theme == "undefined" || that.data.match_theme == null || that.data.match_theme == "") {
            that.setData({
              aa: false
@@ -86,16 +76,6 @@ Page(
            })
          }
          else{
-         //获取Storage变量，并将全局变量进行赋值
-          // wx.getStorage({
-          //  key: 'openid',
-          //  success: function (res) {
-          //    that.setData({
-          //      openid: res.data
-          //    })
-          //    console.log("app.openid:",app.globalData.openid);
-          //  }
-          //  })
          //获取发布人信息
          wx.getStorage({
            key: 'userInfo',
@@ -110,16 +90,18 @@ Page(
                data: {
                  match_theme: that.data.match_theme,
                  match_time: that.data.match_time,
+                 match_week: that.data.match_week,
                  match_address: that.data.match_address,
                  match_address_name: that.data.match_address_name,
                  match_rule: that.data.match_rule,
                  match_color: that.data.match_color,
-                 match_people: that.data.match_people,
                  match_remarks: that.data.match_remarks,
                  //发布人的名字和头像
                  user_name: res.data.nickName,
                  user_url: res.data.avatarUrl,
                  openid: getApp().globalData.openid,
+                 longitude: getApp().globalData.longitude,
+                 latitude: getApp().globalData.latitude
 
                },
                method: 'GET',
@@ -169,39 +151,21 @@ Page(
     //单选按钮组
     choose1: function () {
       this.setData({
-        isChecked1: true,
-        isChecked2: false,
-        isChecked3: false,
-        isChecked4: false,
         match_rule: '11人制'
-
       })
-
     },
     choose2: function () {
       this.setData({
-        isChecked1: false,
-        isChecked2: true,
-        isChecked3: false,
-        isChecked4: false,
         match_rule: '9人制'
       })
     },
     choose3: function () {
       this.setData({
-        isChecked1: false,
-        isChecked2: false,
-        isChecked3: true,
-        isChecked4: false,
         match_rule: '7人制'
       })
     },
     choose4: function () {
       this.setData({
-        isChecked1: false,
-        isChecked2: false,
-        isChecked3: false,
-        isChecked4: true,
         match_rule: '5人制'
       })
     }

@@ -38,7 +38,7 @@ function getCurrentToday() {
  */
 function dateLater(dates, later) {
   let dateObj = {};
-  let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+  let show_day = new Array('星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
   let date = new Date(dates);
   date.setDate(date.getDate() + later);
   let day = date.getDay();

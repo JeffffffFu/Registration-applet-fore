@@ -1,22 +1,20 @@
 {
   "pages": [
-  
     "pages/index/index",
-  "pages/create_match/create_match",
- 
-
+    "pages/create_match/create_match",
+    "pages/edit/edit",
     "pages/match_information/match_information"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#000000",
     "navigationBarTitleText": "小捷足球",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
-    "networkTimeout": {
-      "request": 1000000,
-      "connectSocket": 100000,
-      "uploadFile": 100000,
-      "downloadFile": 100000
-    }
+  "networkTimeout": {
+     "request": 1000000,
+    "connectSocket": 100000,
+    "uploadFile": 100000,
+    "downloadFile": 100000
+}
 }

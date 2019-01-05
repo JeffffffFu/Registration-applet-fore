@@ -5,14 +5,14 @@ var code = "";
 
 App({
    //设置全局变量，来储存发布的比赛的信息
-  globalData: {
-    list :[],              
+  globalData: {          
     openid:'',
      userInfo:[],
      join_information:[],
      openid:'',
-     latitude:'',
-     longitude:''
+     edit_time:'',
+    time:'',
+    sign:'',//点击删除、保存或直接刷新  删除：1 保存：2
   },
   onShow: function () {
   },

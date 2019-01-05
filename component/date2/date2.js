@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var app=getApp();
 Component({
   /**
    * 组件的属性列表
@@ -20,7 +21,8 @@ Component({
     todayhour: "",
     todayminutes: "",
     showselect: false,
-    isdate: true
+    isdate: true,
+    time:''
   },
 
   ready: function () {
@@ -39,13 +41,12 @@ Component({
       hours: hours,
       minutes: minutes,
       todayhour: todayhour,
-      todayminutes: newtodayMinutes
+      todayminutes: newtodayMinutes,
+      time:app.globalData.time
     })
     var selected = dateList[0].year + "-" + dateList[0].newdates + "\t" + ((todayhour >= 10) ? todayhour : ("0" + todayhour)) + ":" + newtodayMinutes;
-    var myEventDetail = {
-      selected: selected,
-    }
-    this.triggerEvent('bindSelect', myEventDetail);
+
+    this.triggerEvent('bindSelect', selected);
   },
 
   /**
@@ -76,16 +77,16 @@ Component({
       var dates = this.data.dateList[val[0]]
       //时间比较
       var selected2 = dates.year + "-" + dates.newdates + " " + ((this.data.hours[val[1]]) < 10 ? ("0" + (this.data.hours[val[1]])) : (this.data.hours[val[1]])) + ":" + this.data.minutes[val[2]]//选择时间
-      var selected3=dates.week
-      var selected4=new Array(selected2,selected3)
+      var selected3 = dates.week
+      var selected4 = new Array(selected2, selected3)
       var todate = this.getCurrentMonthFirst() + "\t" + this.data.todayhour + ":" + this.data.todayminutes;
       this.setData({
         isdate: util.compareDate(selected2, todate)
       })
 
       this.triggerEvent('bindSelect', selected4);
- 
-  
+
+
     },
 
     /**

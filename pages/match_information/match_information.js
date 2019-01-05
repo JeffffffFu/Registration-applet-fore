@@ -10,7 +10,11 @@ Page({
      disabled_leave: false,
      userInfo:[],
      join_information:[],
-     leave_information: []
+     leave_information: [],
+     join_count:'',
+     leave_count: '',
+     longitude:'',
+     latitude:'',
   },
 
   /**
@@ -54,8 +58,15 @@ Page({
               leave_information: res.data.json_leave,
                //接收后台传来关于该用户是否已经报名或请假，从而控制报名或请假按钮是否禁用
               disabled_join: res.data.disable_join,
-              disabled_leave: res.data.disable_leave
+              disabled_leave: res.data.disable_leave,
+              join_count: res.data.json_register.length,
+              leave_count: res.data.json_leave.length,
+              longitude:res.data.longitude,
+              latitude:res.data.latitude
+
+
             })
+            console.log("成功接收222：", that.data.longitude);
           },
           fail: function (res) {
             console.log(".....fail.....");
@@ -96,9 +107,11 @@ Page({
         that.setData({
           join_information: res.data.json_register,
           leave_information: res.data.json_leave,
-          
+          join_count: res.data.json_register.length,
+          leave_count: res.data.json_leave.length,
         })
         console.log("app.js从后台获取的数据(register)：", res.data);
+        console.log("报名个数：", that.data.join_count);
       },
       fail: function (res) {
         console.log(".....fail.....");
@@ -130,7 +143,9 @@ Page({
         //成功后，分别将接受到的报名人信息和请假人信息分别赋值给这个页面中的变量
         that.setData({
           join_information: res.data.json_register,
-          leave_information: res.data.json_leave
+          leave_information: res.data.json_leave,
+          join_count: res.data.json_register.length,
+          leave_count: res.data.json_leave.length,
         })
         console.log("app.js从后台获取的数据(leave)：", res.data);
       },
@@ -140,25 +155,6 @@ Page({
     })
   },
 
-
-  // //请假按钮  可以在前端界面变换样式的请假按钮
-  // user_leave: function () {
-  //   console.log('onLoad')
-  //   var that = this
-  //   //调用应用实例的方法获取全局数据
-  //   app.getUserInfo(function (userInfo) {
-  //     //更新数据
-  //     that.setData({
-  //       userInfo: userInfo
-  //     })
-  //   }),
-
-
-  //   this.setData({
-  //     showView1: false,
-  //     showView2: true
-  //   })
-  // }, 
 
   //转发
   onShareAppMessage: function (ops) {
@@ -180,10 +176,18 @@ Page({
     }
 
   },
+  //打开地图
   openLocation: function () {
     wx.openLocation({
-      latitude: getApp().globalData.latitude,
-      longitude: getApp().globalData.longitude,
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+    })
+  },
+
+  edit:function(){
+    console.log("imformation:", this.data.information_list)
+    wx.navigateTo({
+      url: '../edit/edit?information_list='+JSON.stringify(this.data.information_list)
     })
   }
 

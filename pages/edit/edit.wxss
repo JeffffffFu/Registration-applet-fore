@@ -1,0 +1,98 @@
+/* pages/create_match/create_match.wxss */
+.layout_horizontal{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+
+
+}
+.empyte{
+  color: red;
+}
+.layout_horizontal2{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+
+}
+.radio-group{
+  margin-top: 20rpx;
+
+}
+
+.isChecked1{
+  margin-left: 10rpx;
+  height: 50rpx;
+  width: 120rpx;
+  border: 2rpx #C0C0C0 double;
+  text-align: center;
+  
+} 
+.isChecked2{
+  margin-left: 10rpx;
+  height: 50rpx;
+  width: 120rpx;
+  border: 2rpx #C0C0C0 double;
+  text-align: center;
+} 
+.isChecked3{
+  margin-left: 10rpx;
+  height: 50rpx;
+  width: 120rpx;
+  border: 2rpx #C0C0C0 double;
+  text-align: center;
+} 
+.isChecked4{
+  margin-left: 10rpx;
+  height: 50rpx;
+   width: 120rpx;
+  border: 2rpx #C0C0C0 double;
+  text-align: center;
+} 
+
+.normal1{
+  margin-left: 10rpx;
+  background-color: #2E8B57;
+  text-align: center;
+  height: 50rpx;
+  width: 120rpx;
+  color: white;
+}
+.normal2{
+  background-color: #2E8B57;
+  text-align: center;
+ margin-left: 10rpx;
+  height: 50rpx;
+  width: 120rpx;
+  color: white;
+}
+.normal3{
+  background-color: #2E8B57;
+  text-align: center;
+  margin-left: 10rpx;
+  height: 50rpx;
+ width: 120rpx;
+  color: white;
+}
+.normal4{
+  background-color: #2E8B57;
+  text-align: center;
+  margin-left: 10rpx;
+  height: 50rpx;
+ width: 120rpx;
+  color: white;
+}
+
+.style{
+  display: flex;
+  flex-direction:row;
+}
+.button{
+  display: flex;
+  flex-direction: row;
+  height:80rpx;
+  position: fixed;
+  bottom: 0px;
+}
