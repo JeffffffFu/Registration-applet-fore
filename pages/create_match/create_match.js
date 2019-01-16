@@ -86,7 +86,7 @@ Page(
 
              //连接mysql数据库 传送数据
              wx.request({
-               url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=storage',
+               url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=storage',
                data: {
                  match_theme: that.data.match_theme,
                  match_time: that.data.match_time,

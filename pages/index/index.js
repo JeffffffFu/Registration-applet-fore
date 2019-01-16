@@ -18,7 +18,7 @@ icon_registered:'https://thumbnail0.baidupcs.com/thumbnail/404ee9eae918fd5d21a7d
     //连接mysql数据库 传送数据
     app.callback().then(res=>{
       wx.request({
-        url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=take',
+        url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=take',
         data: {
           openid: app.globalData.openid
         },
@@ -37,9 +37,7 @@ icon_registered:'https://thumbnail0.baidupcs.com/thumbnail/404ee9eae918fd5d21a7d
           console.log(".....fail.....");
         }
       })
-    });
-
-   
+    });  
   },
 
   create: function () {
@@ -48,7 +46,5 @@ icon_registered:'https://thumbnail0.baidupcs.com/thumbnail/404ee9eae918fd5d21a7d
     })
     console.log('跳转成功')
   }
- 
 
-  
 })

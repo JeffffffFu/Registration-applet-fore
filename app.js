@@ -40,7 +40,7 @@ callback:function(){
             });
             //发送请求
             wx.request({
-              url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=user_info', //接口地址
+              url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=user_info', //接口地址
               data: {
                 code: code,
                 appsercet: AppSecret,

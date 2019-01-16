@@ -39,7 +39,7 @@ Page({
         })
         //向后台请求，根据uuid获取对应比赛信息。并且将用户和这场比赛绑定起来
         wx.request({
-          url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=take_basisUuid',
+          url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=take_basisUuid',
           data: {
             uuid: that.data.uuid,
             openid: that.data.openid
@@ -92,7 +92,7 @@ Page({
 
     //连接mysql数据库 传送数据
     wx.request({
-      url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=sign_up',
+      url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=sign_up',
       data: {
           openid:this.data.openid,
           uuid:this.data.uuid,
@@ -129,7 +129,7 @@ Page({
 
     //连接mysql数据库 传送数据
     wx.request({
-      url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=leave',
+      url: 'http://120.79.11.31:8080/Jeff/MyServlet?method=leave',
       data: {
         openid: this.data.openid,
         uuid: this.data.uuid,
