@@ -2,10 +2,11 @@
 .layout_horizontal{
   display: flex;
   flex-direction: row;
-  margin-top: 20rpx;
-  margin-left: 10rpx;
-
-
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+page {
+  background-color:#fff;
 }
 .empyte{
   color: red;

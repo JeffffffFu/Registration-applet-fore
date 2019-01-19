@@ -3,12 +3,14 @@
     "pages/index/index",
     "pages/create_match/create_match",
     "pages/edit/edit",
-    "pages/match_information/match_information"
+    "pages/match_information/match_information",
+    "pages/registration_member/registration_member",
+    "pages/leave_member/leave_member"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "小捷足球",
+    "navigationBarTitleText": "一瞬报名",
     "navigationBarTextStyle": "white"
   },
   "networkTimeout": {

@@ -62,17 +62,11 @@ Page(
          var that=this;
          var app=getApp();
          //判断主题时间地址是否填写，进行逻辑交互处理
-         if (that.data.match_theme == "undefined" || that.data.match_theme == null || that.data.match_theme == "") {
-           that.setData({
-             aa: false
-           })
-         } else if (that.data.match_time == "undefined" || that.data.match_time == null || that.data.match_time == "") {
-           that.setData({
-             bb: false
-           })
-         } else if (that.data.match_address == "undefined" || that.data.match_address == null || that.data.match_address == "") {
-           that.setData({
-             cc: false
+         if (that.data.match_theme == "" || that.data.match_time == "" || that.data.match_address == "") {
+           wx.showToast({
+             title: '主题时间地点不能为空！',
+             icon: 'none',
+             duration: 2000//持续的时间
            })
          }
          else{
@@ -86,7 +80,7 @@ Page(
 
              //连接mysql数据库 传送数据
              wx.request({
-               url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=storage',
+               url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=storage',
                data: {
                  match_theme: that.data.match_theme,
                  match_time: that.data.match_time,

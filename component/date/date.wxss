@@ -12,14 +12,14 @@
   top:10rpx;
 }
 .left-choose{
-     margin-top: 20rpx;
-  margin-left: 10rpx;
+     margin-top: 30rpx;
+  margin-left: 20rpx;
 }
 .zan-cell__ft1{
-   margin-top: 20rpx;
+   margin-top: 30rpx;
 }
 .zan-cell__ft2{
-   margin-top: 20rpx;
+   margin-top: 30rpx;
   color: gray;
 }
 

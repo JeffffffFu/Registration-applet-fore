@@ -10,15 +10,41 @@
    background-color:white;
    width: 90%;
    height: 230rpx ;
-   margin: auto;
    text-align: center;
+    margin: auto;
    display: flex;
    flex-direction: column
    
 }
-.icon{
-  position: absolute;
-  right:50rpx;
-  width:60rpx;
-  height:60rpx;
+.icon1{
+  width:65rpx;
+  height:65rpx;
+  margin-left:600rpx;
+  margin-top: 10rpx;
+  margin-bottom: 15rpx
+}
+.icon2{
+
+  width:90rpx;
+  height:90rpx;
+  margin-left:600rpx;
+}
+
+.view{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  height: 400px;
+  flex-direction:column;
+  
+}
+.view_hide{
+  display: none;
+}
+.theme{
+ display: flex;
+ flex-direction:row;
+ justify-content: center; 
+
 }

@@ -31,6 +31,8 @@ Page({
       edit_list: JSON.parse(option.information_list),//接上个界面传来的数据
       match_theme: JSON.parse(option.information_list).theme,
       match_address: JSON.parse(option.information_list).address,
+      match_time:JSON.parse(option.information_list).match_time,
+      match_week: JSON.parse(option.information_list).week,
       match_color: JSON.parse(option.information_list).color,
       match_remarks: JSON.parse(option.information_list).remarks,
       match_rule: JSON.parse(option.information_list).rule,
@@ -39,36 +41,30 @@ Page({
       latitude: JSON.parse(option.information_list).latitude,
     })
     app.globalData.time = JSON.parse(option.information_list).time;
-    console.log("edit:",this.data.edit_list)
-  
+    app.globalData.week = JSON.parse(option.information_list).week;
+    console.log("edit:",this.data.edit_list);
 },
   //点击按钮，将值传给后端
   save_match: function (e) {
     var that = this;
     var app = getApp();
     //判断主题时间地址是否填写，进行逻辑交互处理
-    if (that.data.match_theme == "undefined" || that.data.match_theme == null || that.data.match_theme == "") {
-      that.setData({
-        aa: false
-      })
-    } else if (that.data.match_time == "undefined" || that.data.match_time == null || that.data.match_time == "") {
-      that.setData({
-        bb: false
-      })
-    } else if (that.data.match_address == "undefined" || that.data.match_address == null || that.data.match_address == "") {
-      that.setData({
-        cc: false
+    if (that.data.match_theme == "" || that.data.match_time == "" || that.data.match_address == "") {
+      wx.showToast({
+        title: '主题时间地点不能为空！',
+        icon: 'none',
+        duration: 2000//持续的时间
       })
     }
     else {
 
           //连接mysql数据库 传送数据
           wx.request({
-            url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=edit_match',
+            url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=edit_match',
             data: {
               match_theme: that.data.match_theme,
-              match_time: that.data.match_time,
-              match_week:that.data.match_week,
+              match_time: app.globalData.time,
+              match_week: app.globalData.week,
               match_address: that.data.match_address,
               match_address_name: that.data.match_address_name,
               match_rule: that.data.match_rule,
@@ -109,7 +105,7 @@ Page({
   delete_match:function(e){
     var that = this;
     wx.request({
-      url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=delete_match',
+      url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=delete_match',
       data: {
         uuid: that.data.uuid,
         openid: getApp().globalData.openid,
@@ -148,11 +144,10 @@ Page({
 
   //获取时间日期
   bindSelect: function (e) {
-    console.log(e.detail)//选择结果值
-    this.setData({
-      match_time: e.detail[0],
-      match_week:e.detail[1]
-    })
+    console.log("time:", e.detail)//选择结果值,这里的函数来源于date2.js。下拉选择器选择了什么则传入什么值，这边将time和week拆开
+    getApp().globalData.time=e.detail[0];
+     getApp().globalData.match_week=e.detail[1]
+  
   },
 
  //队服颜色

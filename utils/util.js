@@ -55,5 +55,6 @@ module.exports = {
   formatTime: formatTime,
   compareDate: compareDate,
   getCurrentToday: getCurrentToday,
-  dateLater: dateLater
+  dateLater: dateLater,
+  icon_expired: ''
 }

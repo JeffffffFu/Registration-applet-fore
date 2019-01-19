@@ -53,8 +53,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
-    //触发日期选择弹出框
+    //触发日期选择弹出框 点击了则将showselect改为相反的 界面会根据showselect的true或false来显示下拉框
     showDate: function () {
       if (this.data.showselect) {
         var showselect = false
@@ -62,7 +61,7 @@ Component({
         var showselect = true
       }
       this.setData({
-        showselect: showselect
+        showselect: showselect 
       })
     },
 
@@ -85,8 +84,7 @@ Component({
       })
 
       this.triggerEvent('bindSelect', selected4);
-
-
+      //将处理后的值传给bindSelect这个函数中的e里
     },
 
     /**

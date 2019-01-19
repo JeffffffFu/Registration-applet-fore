@@ -12,6 +12,7 @@ App({
      openid:'',
      edit_time:'',
     time:'',
+    week:'',
     sign:'',//点击删除、保存或直接刷新  删除：1 保存：2
   },
   onShow: function () {
@@ -40,7 +41,7 @@ callback:function(){
             });
             //发送请求
             wx.request({
-              url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=user_info', //接口地址
+              url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=user_info', //接口地址
               data: {
                 code: code,
                 appsercet: AppSecret,

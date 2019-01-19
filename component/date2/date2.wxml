@@ -1,12 +1,12 @@
 <view class='box' style='position: relative;'>
-  <view class='left-choose'>比赛时间：</view>
+  <view class='left-choose' >比赛时间：</view>
   <view>
-    <view class="tips" wx:if='{{!isdate}}'>时间不能早于当前
+    <view class="tips" wx:if='{{!isdate}}'>提示：所选时间早于当前
     </view>
     <!-- 向右的三角形 -->
     <view class="zan-cell zan-cell--access">
-      <view wx:if="{{date.dates}}" style='padding-right:30rpx;' class="zan-cell__ft1" bindtap='showDate'>{{date.year+"-"+date.dates + '\t' + date.week + '\t' + hour + ':' + minute}}</view>
-      <view wx:if="{{!date.dates}}" style='padding-right:30rpx;' class="zan-cell__ft2" bindtap='showDate'>{{time}}</view>
+      <view wx:if="{{date.dates}}"  class="zan-cell__ft1" bindtap='showDate'>{{date.year+"-"+date.dates + '\t' + date.week + '\t' + hour + ':' + minute}}</view>
+      <view wx:if="{{!date.dates}}"  class="zan-cell__ft2" bindtap='showDate'>{{time}}</view>
       <view class='ft_right' style='border-color: #c8c8c8;'></view>
     </view>
   </view>

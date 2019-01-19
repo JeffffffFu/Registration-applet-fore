@@ -1,0 +1,31 @@
+.row{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin-top: 10rpx;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+ 
+}
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+
+}
+.title {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(243, 243, 243);
+  color:black;
+  font-size:35rpx;
+
+}
+page{
+  background-color: white;
+}

@@ -1,3 +1,4 @@
+var icon = require('../../icon/icon.js');
 var app = getApp();
 Page({
   data: {
@@ -15,6 +16,10 @@ Page({
      leave_count: '',
      longitude:'',
      latitude:'',
+     icon_right:'',
+     icon_map:'',
+     icon_share:'',
+     icon_edit:''  
   },
 
   /**
@@ -25,6 +30,10 @@ Page({
     var that = this;
   //统一根据uuid来重新获取，这样不管是在程序中的还是分享进来的，都使用用一个方法
     that.setData({
+      icon_right:icon.right,
+      icon_map:icon.icon_map,
+      icon_share:icon.share,
+      icon_edit:icon.edit,            
       uuid: options.uuid,
       match_time:options.time
     })
@@ -39,7 +48,7 @@ Page({
         })
         //向后台请求，根据uuid获取对应比赛信息。并且将用户和这场比赛绑定起来
         wx.request({
-          url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=take_basisUuid',
+          url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=take_basisUuid',
           data: {
             uuid: that.data.uuid,
             openid: that.data.openid
@@ -63,8 +72,6 @@ Page({
               leave_count: res.data.json_leave.length,
               longitude:res.data.longitude,
               latitude:res.data.latitude
-
-
             })
             console.log("成功接收222：", that.data.longitude);
           },
@@ -92,7 +99,7 @@ Page({
 
     //连接mysql数据库 传送数据
     wx.request({
-      url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=sign_up',
+      url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=sign_up',
       data: {
           openid:this.data.openid,
           uuid:this.data.uuid,
@@ -123,13 +130,13 @@ Page({
   user_leave: function (){
     var that = this;
     that.setData({       //点击后将禁用值变为true，则成功禁用此按钮
-      disabled_join: false,
+      disabled_join:false,
       disabled_leave: true
     })  
 
     //连接mysql数据库 传送数据
     wx.request({
-      url: 'http://192.168.0.145:8080/Jeff/MyServlet?method=leave',
+      url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=leave',
       data: {
         openid: this.data.openid,
         uuid: this.data.uuid,
@@ -158,12 +165,12 @@ Page({
 
   //转发
   onShareAppMessage: function (ops) {
-    if (ops.from === 'button') {
+    if (ops.from === 'shareBtn') {
       // 来自页面内转发按钮
       console.log(ops.target)
     }
     return {
-      title: '快快报名',
+      title:'赶紧进来报名吧！',
       path: 'pages/match_information/match_information&uuid='+ this.data.uuid+'symbol='+点击分享的链接进入,
       success: function (res) {
         // 转发成功
@@ -183,11 +190,27 @@ Page({
       longitude: this.data.longitude,
     })
   },
-
+ 
+ //编辑比赛信息
   edit:function(){
     console.log("imformation:", this.data.information_list)
     wx.navigateTo({
       url: '../edit/edit?information_list='+JSON.stringify(this.data.information_list)
+    })
+  },
+
+ //报名队员
+  registration_member:function(){
+
+    wx.navigateTo({
+      url: '../registration_member/registration_member?registration_member=' + JSON.stringify(this.data.join_information)+'&registration_count='+this.data.join_count
+    })
+  },
+  //请假队员
+  leave_member: function () {
+
+    wx.navigateTo({
+      url: '../leave_member/leave_member?leave_member=' + JSON.stringify(this.data.leave_information) + '&leave_count=' + this.data.leave_count
     })
   }
 
