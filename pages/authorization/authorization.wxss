@@ -1,0 +1,13 @@
+.view{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  height: 500px;
+  flex-direction:column;
+  }
+  .image{
+    width: 300rpx;
+    height: 300rpx;
+    margin-bottom: 30rpx;
+  }

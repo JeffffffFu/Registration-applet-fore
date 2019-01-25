@@ -10,19 +10,37 @@ Page({
     icon_expired:'',
     icon_leaved:'',
     icon_toSignUp:'',
-    icon_registered:''
+    icon_registered:'',
+    userInfo:[],
+    height:0,
+    uuid:'',
    
   },
+  onLoad:function(options){
+    wx.getSystemInfo({
+      success: function (res) {
+
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;    //比例
+        var calc = clientHeight * rpxR;
+        console.log("calc", calc);
+        getApp().globalData.winHeight = calc;
+        
+      }
+    })
+  },
+
  //加载界面时，获取全局变量并赋值给本界面的list_index变量
   onShow:function(options){
     this.setData({
       icon_expired: icon.icon_expired,
       icon_registered:icon.icon_registered,
       icon_leaved:icon.icon_leaved,
-      icon_toSignUp:icon.icon_toSignUp
+      icon_toSignUp:icon.icon_toSignUp,
+      height: getApp().globalData.winHeight-120
     })
     var that = this;
-   
        var app=getApp();
     //连接mysql数据库 传送数据
     app.callback().then(res=>{
@@ -59,7 +77,8 @@ Page({
     wx.setNavigationBarTitle({
       title: '创建比赛'
     })
-  }
+  },
+
  
 
   

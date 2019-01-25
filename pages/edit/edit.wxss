@@ -2,11 +2,23 @@
 .layout_horizontal{
   display: flex;
   flex-direction: row;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   margin-left: 10rpx;
 
 
 }
+page{
+  background-color:white; 
+}
+.aa{
+  height:300rpx;
+  width: 500rpx;
+ 
+}
+  .map{    
+    width: 50rpx;
+    height: 50rpx;
+  }
 .empyte{
   color: red;
 }
@@ -92,7 +104,7 @@
 .button{
   display: flex;
   flex-direction: row;
-  height:80rpx;
+  height:100rpx;
   position: fixed;
   bottom: 0px;
 }

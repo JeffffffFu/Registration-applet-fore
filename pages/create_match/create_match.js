@@ -11,22 +11,32 @@ Page(
         match_rule:'',
         match_color:'',
         match_remarks:'',
+       match_directions:'',
         user_nickName: "微信账号登录",
         user_avatarUrl: "./user-unlogin.png",
         openid:'',
         aa:true,
         bb:true,
         cc:true,
-      items: [
-        { name: '11人制', value: '11人制' },
-        { name: '9人制', value: '9人制' },
-        { name: '7人制', value: '7人制', checked: 'true' },
-        { name: '5人制', value: '5人制' },
-      ]
+        // 字数限制
+        current: 0,
+         max: 100,
        
     },
     
+    // 活动详情文本框及字数限制
+    limit: function (e) {
+      var value = e.detail.value;
+      var length = parseInt(value.length);  
+      if (length > this.data.noteMaxLen) {
+        return;
+      }
 
+      this.setData({
+        current: length,
+        match_directions:e.detail.value
+      });
+    },
     //比赛主题
      match_theme_input:function(e){
       this.setData({
@@ -44,12 +54,6 @@ Page(
       })
     },
 
-    //队服颜色
-    match_color_input: function (e) {
-      this.setData({
-        match_color: e.detail.value
-      })
-    },
 
    //备注
     match_remarks_input: function (e) {
@@ -88,7 +92,7 @@ Page(
                  match_address: that.data.match_address,
                  match_address_name: that.data.match_address_name,
                  match_rule: that.data.match_rule,
-                 match_color: that.data.match_color,
+                 match_directions: that.data.match_directions,
                  match_remarks: that.data.match_remarks,
                  //发布人的名字和头像
                  user_name: res.data.nickName,
@@ -135,6 +139,49 @@ Page(
             match_address: res.name,
           })
 
+        },
+        fail:function(res){
+          console.log("地图调用失败",res)
+          wx.getSetting({
+            success: function (res) {
+              var statu = res.authSetting;
+              if (!statu['scope.userLocation']) {
+                wx.showModal({
+                  title: '是否授权当前位置',
+                  content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                  success: function (tip) {
+                    if (tip.confirm) {
+                      wx.openSetting({
+                        success: function (data) {
+                          if (data.authSetting["scope.userLocation"]!=false) {
+                            wx.showToast({
+                              title: '授权成功',
+                              icon: 'success',
+                              duration: 1000
+                            }),
+                            //授权成功之后，再调用chooseLocation选择地方
+                            wx.chooseLocation({
+                              success: function (res) {
+                                obj.setData({
+                                  addr: res.address
+                                })
+                              },
+                            })
+                          } else {
+                            wx.showToast({
+                              title: '授权失败',
+                              icon: 'success',
+                              duration: 1000
+                            })
+                          }
+                        }
+                      })
+                    }
+                  },fail:function(res){
+                    console.log("地图再次调用失败：",res)
+                  }
+                })
+              }
         }
 
       })
@@ -142,26 +189,8 @@ Page(
 
 
 
-    //单选按钮组
-    choose1: function () {
-      this.setData({
-        match_rule: '11人制'
+    
       })
-    },
-    choose2: function () {
-      this.setData({
-        match_rule: '9人制'
-      })
-    },
-    choose3: function () {
-      this.setData({
-        match_rule: '7人制'
-      })
-    },
-    choose4: function () {
-      this.setData({
-        match_rule: '5人制'
-      })
-    }
+    
   }
-)
+  })

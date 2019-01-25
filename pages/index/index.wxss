@@ -20,7 +20,7 @@
   width:65rpx;
   height:65rpx;
   margin-left:600rpx;
-  margin-top: 10rpx;
+  margin-top:10rpx;
   margin-bottom: 15rpx
 }
 .icon2{
@@ -29,6 +29,14 @@
   height:90rpx;
   margin-left:600rpx;
 }
+.icon3{
+ width:55rpx;
+  height:55rpx;
+  margin-left:600rpx;
+   margin-top:10rpx;
+  margin-bottom: 25rpx
+}
+
 
 .view{
   display: flex;
@@ -46,5 +54,9 @@
  display: flex;
  flex-direction:row;
  justify-content: center; 
+ 
+ }
 
-}
+
+
+

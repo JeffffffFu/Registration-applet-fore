@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var icon = require('../../icon/icon.js');
 var app=getApp();
 Component({
   /**
@@ -22,14 +23,15 @@ Component({
     todayminutes: "",
     showselect: false,
     isdate: true,
-    time:''
+    time:'',
+    icon_right:''
   },
 
   ready: function () {
     let dateList = this.getDates(100);
     const date = new Date()
     const hours = []
-    const minutes = ['00', '30']
+    const minutes = ['00', '10', '20', '30', '40', '50']
     var todayMinutes = parseInt(date.getMinutes());
     var todayhour = (todayMinutes >= 30 ? (date.getHours() + 1) : date.getHours());//当前时
     var newtodayMinutes = todayMinutes < 30 ? '30' : '00';//当前分
@@ -42,7 +44,8 @@ Component({
       minutes: minutes,
       todayhour: todayhour,
       todayminutes: newtodayMinutes,
-      time:app.globalData.time
+      time:app.globalData.time,
+      icon_right:icon.right
     })
     var selected = dateList[0].year + "-" + dateList[0].newdates + "\t" + ((todayhour >= 10) ? todayhour : ("0" + todayhour)) + ":" + newtodayMinutes;
 

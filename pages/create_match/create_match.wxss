@@ -8,6 +8,10 @@
 page {
   background-color:#fff;
 }
+.aa{
+  height: 300rpx;
+  width: 530rpx;
+}
 .empyte{
   color: red;
 }

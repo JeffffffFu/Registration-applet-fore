@@ -1,13 +1,24 @@
 <view class='box' style='position: relative;'>
-  <view class='left-choose' style="margin-right:20rpx;">比赛时间</view>
+  <view class='left-choose' style="margin-right:20rpx">活动时间</view>
   <view>
-    <view class="tips" wx:if='{{!isdate}}'>时间不能早于当前
+    <view class="tips" wx:if='{{!isdate}}'>提示：所选时间早于当前
     </view>
     <!-- 向右的三角形 -->
-    <view class="zan-cell zan-cell--access">
-      <view wx:if="{{date.dates}}" style='padding-right:30rpx;' class="zan-cell__ft1" bindtap='showDate'>{{date.year+"-"+date.dates + '\t' + date.week + '\t' + hour + ':' + minute}}</view>
-      <view wx:if="{{!date.dates}}" style='padding-right:30rpx;font-size:16px;' class="zan-cell__ft2"  bindtap='showDate'>请选择比赛时间</view>
-      <view class='ft_right' style='border-color: #c8c8c8;'></view>
+    <view class="zan-cell--access">
+      <view wx:if="{{date.dates}}" style='padding-right:30rpx;' class="zan-cell__ft1" bindtap='showDate'>{{date.year+"-"+date.dates + '\t' + date.week + '\t' + hour + ':' + minute}}</view> 
+      <view wx:if="{{!date.dates}}" style='padding-right:30rpx;font-size:16px;' class="zan-cell__ft2"  bindtap='showDate'>请选择活动时间</view>
+      <image wx:if="{{!date.dates}}" class='image1' src='{{icon_right}}' ></image>
+      <image wx:if="{{date.dates}}" class='image2' src='{{icon_right}}' ></image>
+      <!-- <view wx:if="{{date.dates}}" style='padding-right:30rpx;' class="zan-cell__ft1" bindtap='showDate'>
+      <view>{{date.year+"-"+date.dates + '\t' + date.week + '\t' + hour + ':' + minute}}</view>
+      <image  class='image' src='{{icon.right}}'></image>
+      </view>
+
+      <view wx:if="{{!date.dates}}" style='font-size:16px;' class="zan-cell__ft2"  bindtap='showDate'>
+      <view style='width:200rpx'>请选择活动时间</view>
+      <image  class='image' src='{{icon.right}}'></image>
+      </view> -->
+
     </view>
   </view>
 </view>

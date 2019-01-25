@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var icon = require('../../icon/icon.js');
 Component({
   /**
    * 组件的属性列表
@@ -20,14 +21,15 @@ Component({
     todayhour: "",
     todayminutes: "",
     showselect: false,
-    isdate: true
+    isdate: true,
+    icon_right:'',
   },
 
   ready: function () {
     let dateList = this.getDates(100);
     const date = new Date()
     const hours = []
-    const minutes = ['00', '30']
+    const minutes = ['00','10','20' ,'30','40','50']
     var todayMinutes = parseInt(date.getMinutes());
     var todayhour = (todayMinutes >= 30 ? (date.getHours() + 1) : date.getHours());//当前时
     var newtodayMinutes = todayMinutes < 30 ? '30' : '00';//当前分
@@ -39,13 +41,15 @@ Component({
       hours: hours,
       minutes: minutes,
       todayhour: todayhour,
-      todayminutes: newtodayMinutes
+      todayminutes: newtodayMinutes,
+      icon_right:icon.right
     })
     var selected = dateList[0].year + "-" + dateList[0].newdates + "\t" + ((todayhour >= 10) ? todayhour : ("0" + todayhour)) + ":" + newtodayMinutes;
     var myEventDetail = {
       selected: selected,
     }
     this.triggerEvent('bindSelect', myEventDetail);
+    console.log("icon:",this.data.icon_right)
   },
 
   /**

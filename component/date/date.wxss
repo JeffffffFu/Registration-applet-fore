@@ -14,13 +14,21 @@
 .left-choose{
      margin-top: 30rpx;
   margin-left: 20rpx;
+
 }
 .zan-cell__ft1{
    margin-top: 30rpx;
+  
 }
 .zan-cell__ft2{
    margin-top: 30rpx;
   color: gray;
+   
+}
+.zan-cell--access{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .tips {
@@ -43,4 +51,16 @@
   justify-content: flex-start;
   align-items: center;
 
+}
+.image1{
+   width: 40rpx;
+    height: 40rpx;
+    margin-left: 220rpx;
+    margin-top:30rpx; 
+}
+.image2{
+   width: 40rpx;
+    height: 40rpx;
+    margin-left: 60rpx;
+    margin-top:30rpx; 
 }

@@ -1,15 +1,16 @@
+<scroll-view class='bb' style='height:{{height}}rpx' scroll-y="true">
 <view class="{{list_index.length==0?'view':'view_hide'}}">
 <text>您暂无发布或参与活动</text>
 <text>赶紧点击下方按钮发布吧！</text>
 </view>
+
 <view class='match_information'  style='margin-top:30rpx' wx:for="{{list_index}}" wx:key="list_index_id"  >
 <!-- 循环index数组 -->
 <navigator url='../match_information/match_information?id={{index}}&symbol=小程序内部流程进入&uuid={{item.uuid}}&time={{item.time}}' style='height:100%; width:100%'> 
-
 <view  class='theme'> 
 <text style='font-width:600rpx;font-size:40rpx;margin-top:20rpx;margin-button:20rpx; position: absolute;'>{{item.theme}}</text>
 <image  src='{{item.match_status==0?icon_toSignUp:item.match_status==1?icon_registered:item.match_status==2?icon_leaved:icon_expired}}'
- class="{{item.match_status==2?'icon1':'icon2'}}" > </image>
+ class="{{item.match_status==2?'icon1':item.match_status==0?'icon3':'icon2'}}" > </image>
 </view>
 
 <view style='width:100%;height:1rpx;background:#DCDCDC;'></view>
@@ -17,6 +18,6 @@
 <view style='margin-top:10rpx;font-size:25rpx' >{{item.address}}</view>
 </navigator>
 </view>
-
-<button style="border-radius: 0" type="primary" bindtap="create" class="address" > 发布活动/比赛 </button>
+</scroll-view>
+<button style="border-radius: 0;background:#3CB371;" type="primary" bindtap="create" class="address" > 发布活动 </button>
 

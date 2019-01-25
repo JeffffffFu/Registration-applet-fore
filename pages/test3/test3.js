@@ -1,17 +1,28 @@
 
 var app = getApp();
+
 Page({
-  data:{
-      openid:''
+  data: {
+    // 字数限制
+    winHeight:0,
+
   },
-  onLoad: function (options) {
-    var that = this;
-    setTimeout(function () {
-      console.log(getApp().globalData.openid)
-      that.setData({
-        openid: getApp().globalData.openid
-      })
-    }, 1000)
-  },
+  onShow:function(){
+    var that=this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientHeight = res.windowHeight,
+         clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;    //比例
+        var calc = clientHeight * rpxR;
+        console.log("calc",calc)
+        that.setData({
+          winHeight: calc
+        });
+      }
+    })
+  }
+ 
+
 })
 

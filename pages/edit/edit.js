@@ -1,5 +1,5 @@
 var app=getApp();
-
+var icon = require('../../icon/icon.js');
 Page({
 //设置变量，以便存储输入的数据
     data: {
@@ -9,38 +9,47 @@ Page({
     match_address: '',
     match_address_name: '',
     match_rule: '',
-    match_color: '',
+    match_directions: '',
     match_remarks: '',
     uuid:'',
     openid: '',
+    icon_map:'',
     edit_list:[],
-    aa: true,
-    bb: true,
-    cc: true,
-    items: [
-      { name: '11人制', value: '11人制' },
-      { name: '9人制', value: '9人制' },
-      { name: '7人制', value: '7人制', checked: 'true' },
-      { name: '5人制', value: '5人制' },
-    ],
+      current: 0,
+      max: 100,
+      height:0,
+  },
 
+  limit: function (e) {
+    var value = e.detail.value;
+    var length = parseInt(value.length);
+    if (length > this.data.noteMaxLen) {
+      return;
+    }
+
+    this.setData({
+      current: length,
+      match_directions: e.detail.value
+    });
   },
     
   onLoad: function (option){
     this.setData({
+      icon_map:icon.icon_map,
       edit_list: JSON.parse(option.information_list),//接上个界面传来的数据
       match_theme: JSON.parse(option.information_list).theme,
       match_address: JSON.parse(option.information_list).address,
       match_time:JSON.parse(option.information_list).match_time,
       match_week: JSON.parse(option.information_list).week,
-      match_color: JSON.parse(option.information_list).color,
+      match_directions: JSON.parse(option.information_list).directions,
       match_remarks: JSON.parse(option.information_list).remarks,
       match_rule: JSON.parse(option.information_list).rule,
       uuid: JSON.parse(option.information_list).uuid,
       longitude:JSON.parse(option.information_list).longitude,
       latitude: JSON.parse(option.information_list).latitude,
+      height: getApp().globalData.winHeight - 120,
     })
-    app.globalData.time = JSON.parse(option.information_list).time;
+    app.globalData.time = JSON.parse(option.information_list).match_time;
     app.globalData.week = JSON.parse(option.information_list).week;
     console.log("edit:",this.data.edit_list);
 },
@@ -63,12 +72,12 @@ Page({
             url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=edit_match',
             data: {
               match_theme: that.data.match_theme,
-              match_time: app.globalData.time,
+              match_time: that.data.match_time,
               match_week: app.globalData.week,
               match_address: that.data.match_address,
               match_address_name: that.data.match_address_name,
               match_rule: that.data.match_rule,
-              match_color: that.data.match_color,
+              match_directions: that.data.match_directions,
               match_remarks: that.data.match_remarks,
               uuid:that.data.uuid,
               openid: getApp().globalData.openid,
@@ -150,12 +159,6 @@ Page({
   
   },
 
- //队服颜色
-  match_color_input: function (e) {
-    this.setData({
-      match_color: e.detail.value
-    })
-  },
 
  //备注
   match_remarks_input: function (e) {
@@ -183,26 +186,5 @@ Page({
 
     })
   },
-  //单选按钮组
-  choose1: function () {
-    this.setData({
-      match_rule: '11人制'
-
-    })
-  },
-  choose2: function () {
-    this.setData({
-      match_rule: '9人制'
-    })
-  },
-  choose3: function () {
-    this.setData({
-      match_rule: '7人制'
-    })
-  },
-  choose4: function () {
-    this.setData({
-      match_rule: '5人制'
-    })
-  }
+  
 })

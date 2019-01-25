@@ -1,1 +1,3 @@
-<view>openid:{{openid}}</view>
+<view class='a' style='height:{{winHeight}}rpx'>
+ad 
+</view>

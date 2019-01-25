@@ -1,0 +1,6 @@
+<view style="border: 1px solid black; border-radius: 10px;width:500rpx">
+     <textarea placeholder-class="place-holder"  placeholder="请填写活动详细说明（选填） " name="introduction" maxlength='300' bindinput='limit' value="{{text}}" style="font-size: 14px;"/>
+
+      <!-- 显示字数 -->
+      <view class="clear"><text style="color: #ccc; font-size: 14px; float: right; margin-right: 2%;">{{current}} / {{max}} （最多可写300字）</text></view>
+</view>

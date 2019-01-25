@@ -19,7 +19,9 @@ Page({
      icon_right:'',
      icon_map:'',
      icon_share:'',
-     icon_edit:''  
+     icon_edit:'',
+     icon_home:'',
+     height:0,  
   },
 
   /**
@@ -33,13 +35,20 @@ Page({
       icon_right:icon.right,
       icon_map:icon.icon_map,
       icon_share:icon.share,
-      icon_edit:icon.edit,            
+      icon_edit:icon.edit,
+      icon_home:icon.icon_home,            
       uuid: options.uuid,
-      match_time:options.time
+      match_time:options.time,
+      height: getApp().globalData.winHeight-100,
     })
-    console.log("uuid:",that.data.uuid);
+    getApp().globalData.match_time=options.time; //接受分享界面传来的
+    getApp().globalData.uuid = options.uuid;//接受分享界面传来的
+    getApp().globalData.sign_share=options.sign_share,
+    console.log("结束的uuid:",getApp().globalData.uuid);
     console.log("time:", that.data.match_time);
+    console.log("结束的uuid2:", getApp().globalData.sign_share);
   // 取出key为openid的值.openid在app.js的onload界面已经存在storage中
+    app.callback().then(res => {
     wx.getStorage({      
       key: 'openid',
       success: function (res) {
@@ -73,13 +82,14 @@ Page({
               longitude:res.data.longitude,
               latitude:res.data.latitude
             })
-            console.log("成功接收222：", that.data.longitude);
+           
           },
           fail: function (res) {
             console.log(".....fail.....");
           }
         })
       },
+    })
     })
       // 要求小程序返回分享目标信息
       wx.showShareMenu({
@@ -165,13 +175,15 @@ Page({
 
   //转发
   onShareAppMessage: function (ops) {
-    if (ops.from === 'shareBtn') {
+    if (ops.from ==='shareBtn') {
       // 来自页面内转发按钮
       console.log(ops.target)
+      console.log("uuid:",this.data.uuid)
     }
+    console.log("uuid:", this.data.uuid)
     return {
       title:'赶紧进来报名吧！',
-      path: 'pages/match_information/match_information&uuid='+ this.data.uuid+'symbol='+点击分享的链接进入,
+      path: 'pages/match_information/match_information?uuid='+ this.data.uuid+'&time='+this.data.match_time+'&sign_share='+1,
       success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
@@ -182,6 +194,12 @@ Page({
       }
     }
 
+  },
+  //返回首页
+  back:function(){
+    wx.navigateTo({
+      url: '../index/index',
+    })
   },
   //打开地图
   openLocation: function () {

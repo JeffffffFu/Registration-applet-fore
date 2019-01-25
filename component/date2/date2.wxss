@@ -12,16 +12,20 @@
   top:10rpx;
 }
 .left-choose{
-      margin-top: 20rpx;
+  margin-top: 30rpx;
   margin-left: 10rpx;
 }
 .zan-cell__ft1{
-   margin-top: 20rpx;
+   margin-top: 30rpx;
 }
 .zan-cell__ft2{
-   margin-top: 20rpx;
+   margin-top: 30rpx;
 }
-
+.zan-cell--access{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .tips {
   width: 175rpx;
   height: 40rpx;
@@ -42,4 +46,16 @@
   justify-content: flex-start;
   align-items: center;
 
+}
+.image1{
+   width: 40rpx;
+    height: 40rpx;
+    margin-left: 170rpx;
+    margin-top:30rpx; 
+}
+.image2{
+   width: 40rpx;
+    height: 40rpx;
+     margin-left: 90rpx;
+    margin-top:30rpx; 
 }
