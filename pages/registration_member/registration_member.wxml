@@ -1,13 +1,17 @@
 <view class='column'>
 <view class="title">
-<text style='padding-left:10rpx'>报名成员({{registration_count}})</text></view>
+<text  wx:if="{{people_view}}" style='padding-left:10rpx'>报名成员({{registration_count}}/{{match_people}})</text>
+<text  wx:if="{{!people_view}}" style='padding-left:10rpx'>报名成员({{registration_count}})</text>
+</view>
+
 
 <view  class='column' wx:for="{{registration_member}}" wx:key="registration_member_id">
 <view class="row">
-<image class="userinfo-avatar"  src="{{item.user_url}}" ></image>
-<text style='color:#696969;font-size:30rpx;margin-left:20rpx;width:330rpx;text-align:left;display:inline-block'>{{item.user_name}}</text>
-<text style='color:#696969;font-size:30rpx;width:300rpx'>{{item.click_time}}</text>
+<image class="userinfo-avatar"  src="{{item.userUrl}}" ></image>
+<text style='color:#696969;font-size:30rpx;margin-left:20rpx;width:330rpx;text-align:left;display:inline-block'>{{item.userName}}</text>
+<text style='color:#696969;font-size:30rpx;width:300rpx'>{{item.matchStatus.clickTime}}</text>
 </view>
+
 <view style='width:100%;height:3rpx;margin:auto;background:#C0C0C0;margin-top:10rpx'></view>
 </view>
 

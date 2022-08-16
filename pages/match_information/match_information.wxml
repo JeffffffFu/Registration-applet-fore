@@ -1,10 +1,15 @@
-<scroll-view class='bb' style='height:{{height}}rpx' scroll-y="true">
+<view class="view3" wx:if="{{!load}}">
+<image style='width:200rpx;height:200rpx' src='{{icon_authorization}}'></image>
+<image style='width:300rpx;height:300rpx' src="{{icon_load}}"> </image>
+</view>
+
+<view wx:if="{{load}}"  >
+<scroll-view scroll-top="{{scroll_top}}" bindscrolltoupper="topLoad" class='bb' style='height:{{height}}rpx' scroll-y="true">
 
 <view class='style'>
 
-<view style='font-width:650rpx;font-size:42rpx;margin-top:30rpx'>{{information_list.theme}}</view>
+<view style='font-width:650rpx;font-size:40rpx;font-weight:600;margin-top:30rpx'>{{information_list.theme}}</view>
 <view style='width:90%;height:2rpx;background:#C0C0C0;margin-bottom:30rpx;margin-top:30rpx;margin-left:auto;margin-right:auto'></view>
-
 
 <view class="layout_horizontal"><text style='color:#696969'>活动时间：</text>{{information_list.time}} ({{information_list.week}})</view>
 
@@ -19,81 +24,110 @@
 <text style='width:520rpx; text-align:left;display:inline-block'>{{information_list.directions}}</text>
 </view>
 
-<view class="{{information_list.remarks==''?'view_hide':'layout_horizontal'}}"><text style='color:#696969'>备注提醒：</text>
-<view style='width:500rpx;text-align:left;display:inline-block'>{{information_list.remarks}}</view>
+<view class="{{information_list.people==''?'view_hide':'layout_horizontal'}}">
+<text style='color:#696969'>人数限制：</text>
+<view style='width:500rpx;text-align:left;display:inline-block'>{{information_list.people}}</view>
 </view>
+
+<view class="{{information_list.deadlineTime==''?'view_hide':'layout_horizontal'}}"><text style='color:#696969'>报名截止：</text>
+<view style='width:500rpx;text-align:left;display:inline-block'>{{information_list.deadline_time}} {{information_list.deadline_week}}</view>
+</view>
+
 </view>
 
 <view class="style2" style="display:{{join_count==0?'none':'block'}}">
 <view  bindtap='registration_member'  class="layout_horizontal3" >
-<text style='font-size:30rpx;width:300rpx'>报名队员({{join_count}})</text>
+<text wx:if="{{people_view}}" style='font-size:30rpx;width:300rpx'>报名成员({{join_count}}/{{information_list.people}})</text>
+<text wx:if="{{!people_view}}" style='font-size:30rpx;width:300rpx'>报名成员({{join_count}})</text>
 <image class='image2' src='{{icon_right}}'></image>
 </view> 
+
 
 <view style='width:100%;height:3rpx;margin:auto;background:#C0C0C0;margin-top:20rpx'></view>
 <view class='view_show2'>
 <view  class='view_show' wx:for="{{join_information}}" wx:key="join_information_id">
-<image class="userinfo-avatar"  src="{{item.user_url}}" ></image>
-<text style='color:#696969;font-size:25rpx;'>{{item.user_name}}</text>
+<image class="userinfo-avatar"  src="{{item.userUrl}}" ></image>
+<text style='color:#696969;font-size:25rpx;'>{{item.userName}}</text>
 </view>
 </view>
 </view>
 
 <view class="style2" style="display:{{leave_count==0?'none':'block'}}">
 <view bindtap='leave_member'class="layout_horizontal3">
-<text style='font-size:30rpx;width:300rpx;'>请假队员({{leave_count}})</text>
+<text style='font-size:30rpx;width:300rpx;'>请假成员({{leave_count}})</text>
 <image class='image2' src='{{icon_right}}'></image>
 </view> 
 
 <view style='width:100%;height:3rpx;margin:auto;background:#C0C0C0;margin-top:20rpx'></view>
  <view class='view_show2'>
 <view class='view_show'  wx:for="{{leave_information}}" wx:key="leave_information_id">
-<image class="userinfo-avatar"  src="{{item.user_url}}" ></image>
-<text style='color:#696969;font-size:25rpx;' >{{item.user_name}}</text>
-</view>
+<image class="userinfo-avatar"  src="{{item.userUrl}}" ></image>
+<text style='color:#696969;font-size:25rpx;' >{{item.userName}}</text>
 </view>
 </view>
 
-<view class='sponsor'>
-<view style='margin-top:20rpx;font-size:25rpx'>发布人：{{information_list.sponsor}}</view>
 </view>
+
+<view style='width:100%;height:10rpx;margin:auto;background:	#F5F5F5;margin-top:10rpx'></view>
 
 </scroll-view>
 
 
-<view class="content" style="display:{{information_list.match_status==3?'none':''}}">
+<view class="content" style="display:{{information_list.matchStatus.matchStatus==3?'none':''}}">
 
 
 
-<button class='view2'  style="display:{{information_list.sponsor_openid==openid?'none':''}};width:'100rpx';font-size:23rpx" bindtap='back' > 
+<button class='view2'  style="display:{{information_list.sponsorOpenid==openid?'none':''}};width:'100rpx';font-size:23rpx" bindtap='back' > 
 <image class='image3' src='{{icon_home}}'></image>
-<text style='width:60rpx'>首页</text> 
+<text style='color:#696969;width:60rpx;height:1rpx'>首页</text> 
 </button>
 
-<button class='view2' style="display:{{information_list.sponsor_openid==openid?'':'none'}};font-size:23rpx"  bindtap='edit'>
+<button class='view2' style="display:{{information_list.sponsorOpenid==openid?'':'none'}};font-size:23rpx"  bindtap='edit'>
 <image class='image3' src='{{icon_edit}}'></image> 
-<text style='width:60rpx'>编辑</text>
+<text style='color:#696969;width:60rpx;height:1rpx'>编辑</text>
 </button> 
 
-<button class='view2'  style="width:'100rpx';font-size:23rpx" id="shareBtn" open-type="share"hover-class="other-button-hover"> 
-<image class='image3' src='{{icon_share}}'></image>
-<text style='width:60rpx'>分享</text> 
+<button  class='view2'  style="font-size:23rpx" id="shareBtn" open-type="share"hover-class="other-button-hover"> 
+<image class='image3'  src='{{icon_share}}'></image>
+<text style='color:#696969;width:60rpx;height:1rpx'>分享</text> 
 </button>
-<view class="{{disabled_join?'none':'block'}}" style="width:280rpx;background:#3CB371;color:white;text-align:center;line-height: 100rpx;"bindtap="user_join">
+
+<!-- form是用于发送模板消息的 -->
+
+<form report-submit='true' bindsubmit="BtnCommit">
+<button form-type="submit" wx:if="{{authorize}}" class="{{disabled_join?'none':'block'}}" style="width:280rpx;background:#3CB371;color:white;text-align:center;line-height: 100rpx;border-radius: 0;"bindtap="user_join">
 报名
-</view>
+</button>
+</form>
+
+<form report-submit='true' bindsubmit="BtnCommit2">
+<button form-type="submit" id="registration" wx:if="{{!authorize}}" class="{{disabled_join?'none':'block'}}" style="width:280rpx;background:#3CB371;color:white;text-align:center;line-height: 100rpx;border-radius: 0;" lang="zh_CN" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">
+报名
+</button>
+</form>
+
 <view class="{{disabled_join?'block':'none'}}" style="width:280rpx;background:#A9A9A9;color:white;text-align:center;line-height: 100rpx;">
 已报名
 </view>
-<view class="{{disabled_leave?'none':'block'}}" style="width:280rpx;background:#F08080;color:white;text-align:center;line-height: 100rpx;"bindtap="user_leave">
+
+
+<button  wx:if="{{authorize}}" class="{{disabled_leave?'none':'block'}}" style="width:280rpx;background:#F08080;color:white;text-align:center;line-height: 100rpx;border-radius: 0;"bindtap="user_leave">
 请假
-</view>
+</button>
+
+<!-- 同样是点击按钮获取用户授权，报名和请假可通过id来进行区分 -->
+<button  id="leave" wx:if="{{!authorize}}" class="{{disabled_leave?'none':'block'}}" style="width:280rpx;background:#F08080;color:white;text-align:center;line-height: 100rpx;border-radius: 0;" lang="zh_CN" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">
+请假
+</button>
+
+
 <view class="{{disabled_leave?'block':'none'}}" style="width:280rpx;background:#A9A9A9;color:white;text-align:center;line-height: 100rpx;">
 已请假
 </view>
 </view>
 
-<view class="content2"style="display:{{information_list.match_status==3?'block':'none'}}">
+<view class="content2"style="display:{{information_list.matchStatus.matchStatus==3?'block':'none'}}">
 <view >已结束</view>
 </view>
 
+</view>

@@ -1,6 +1,6 @@
-<view class="layout_horizontal">
-<view style="margin-right:20rpx;" class="{{aa?'':'empyte'}}">活动主题</view>
-<input placeholder-style="font-size:16px"  maxlength="10" placeholder="请输入活动主题" bindinput='match_theme_input'>
+<view  class="layout_horizontal">
+<view style="margin-right:20rpx;">活动主题</view>
+<input style='width:500rpx;color:#696969' placeholder-style="font-size:14px;color:#D3D3D3"  maxlength="12" placeholder="请输入活动主题" bindinput='match_theme_input'>
 </input>
 </view>
 <view style='width:100%;height:3rpx;background:	#DCDCDC;margin-left:20rpx;margin-top:30rpx'></view>
@@ -13,8 +13,9 @@
 
 <view class="layout_horizontal">
 <view style="margin-right:20rpx;" >活动场地</view>
-<input bindtap="chooseLocation" placeholder-style="font-size:16px;" placeholder="请输入活动场地"   value="{{match_address}}"></input>
+<input style='width:500rpx;color:#696969' bindtap="chooseLocation" placeholder-style="font-size:14px;color:#D3D3D3" placeholder="请输入活动场地"   value="{{match_address}}"></input>
 </view>
+
 <!-- <view class="layout_horizontal">
 <view style="margin-right:20rpx;" bindtap="chooseLocation">活动场地</view>
 <view  bindtap="chooseLocation" style='font-size:16px;'>{{match_address}}</view>
@@ -23,23 +24,38 @@
 <view style='width:100%;height:3rpx;background:	#DCDCDC;margin-left:20rpx;margin-top:30rpx'></view>
 
 <view class="layout_horizontal">
-<view style="margin-right:20rpx;">活动详情</view>
-<view style="border: 1px solid #C0C0C0; border-radius:10rpx;width:550rpx;height:300rpx">
-<textarea class="aa"  placeholder="请填写活动详细说明（选填） " name="introduction" maxlength='100' bindinput='limit'  style="font-size:16px;"/>
+<view style="margin-right:20rpx;">活动说明</view>
+<view style='color:#696969;border: 2px solid #DCDCDC; border-radius:10rpx;width:550rpx;height:200rpx'>
+<textarea class="aa" cursor-spacing='200' placeholder-style="font-size:14px;color:#D3D3D3" placeholder="请填写活动说明或备注提醒（选填） " name="introduction" maxlength='100' bindinput='limit'  style="font-size:16px;"/>
 </view>
 </view>
+
   <!-- 显示字数 -->
  <view class="clear"><text style="color: #ccc; font-size: 12px; float: right; margin-right: 2%;">{{current}} / {{max}} （最多可写100字）</text></view>
 <view style='width:100%;height:3rpx;background:#DCDCDC;margin-left:20rpx;margin-top:55rpx'></view>
 
-<view class="layout_horizontal">
+
+<!-- <view class="layout_horizontal">
 <view style="margin-right:20rpx;">备注提醒</view>
-<input placeholder-style="font-size:16px;" placeholder="有什么要提醒大家（选填）" bindinput='match_remarks_input'></input>
+<input style='width:500rpx;color:#696969' placeholder-style="font-size:16px;color:#D3D3D3" maxlength="10" placeholder="有什么要提醒大家（选填）" bindinput='match_remarks_input'></input>
+</view>
+<view style='width:100%;height:3rpx;background:#DCDCDC;margin-left:20rpx;margin-top:30rpx'></view> -->
+
+
+<view class="layout_horizontal">
+<view style="margin-right:20rpx;">人数限制</view>
+<input style='width:450rpx;color:#696969' placeholder-style="font-size:14px;color:#D3D3D3" maxlength="10" placeholder="填写最多报名人数（选填）" bindinput='match_people_input' type='number'></input>
 </view>
 <view style='width:100%;height:3rpx;background:#DCDCDC;margin-left:20rpx;margin-top:30rpx'></view>
 
+<!-- 时间选择插件 
+<view>
+<my-date3 bind:bindSelect="bindSelect3"></my-date3>
+</view>
+<view style='width:100%;height:3rpx;background:	#DCDCDC;margin-left:20rpx;margin-top:30rpx'></view> -->
+
 
 <view style='display:flex;flex-direction:column;text-align: center;margin-top:100rpx;'>
-<button style="width:90%;background:#3CB371;" type="primary" bindtap='create_button'>立即发布</button>
-<text style='font-size:22rpx;color:#A9A9A9'>如有建议或意见，欢迎联系我：15606081231（手机微信同号）</text>
+<button style="width:90%;background:#3CB371;" type="primary" bindtap='create_button'>确认创建</button>
+<text style='margin-top:20rpx;font-size:24rpx;color:#A9A9A9'>如有建议或意见，欢迎联系我：15606081231（手机微信同号）</text>
 </view>

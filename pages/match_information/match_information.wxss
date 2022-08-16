@@ -1,6 +1,6 @@
 /* pages/match_information/match_information.wxss */
   .style{
-   margin-top: 30rpx;
+   margin-top: 50rpx;
    background-color:white;
    width: 100%;
    text-align: center;
@@ -20,6 +20,7 @@
   flex-direction: row;
   margin-left: 30rpx;
   margin-bottom: 30rpx;
+  font-size: 32rpx;
  
 }
 .layout_horizontal2{
@@ -91,26 +92,32 @@
     background-color:white;
   }
   .view2::after{
-        border-radius:2rpx; 
-        border:2rpx; 
+        border-radius:0; 
+        border:0; 
+  }
+  .button::after{
+    border-radius:0; 
+    border:0;
   }
   .image{
     width: 60rpx;
     height: 60rpx;
   }
    .image3{
-    width: 80rpx;
-    height: 80rpx;
+     display: flex;
+    width: 35rpx;
+    height: 35rpx;
+    color: #696969;
   }
     .image2{
-    width: 40rpx;
-    height: 40rpx;
-    margin-left: 520rpx;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 460rpx;
   }
 
     .map{    
-    width: 50rpx;
-    height: 50rpx;
+    width: 40rpx;
+    height: 40rpx;
   }
   .registrarion1{
     width:280rpx;
@@ -123,6 +130,23 @@ display: block
   .none{
 display: none
   }
+  .view{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  height: 400px;
+  flex-direction:column;
+  
+}
+.view3{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  flex-direction:column;
+  
+}
   
   
   

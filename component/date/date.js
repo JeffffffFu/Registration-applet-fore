@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js');
+var util = require('../utils/util.js');
 var icon = require('../../icon/icon.js');
 Component({
   /**
@@ -23,6 +23,7 @@ Component({
     showselect: false,
     isdate: true,
     icon_right:'',
+    icon_down:'',
   },
 
   ready: function () {
@@ -42,7 +43,8 @@ Component({
       minutes: minutes,
       todayhour: todayhour,
       todayminutes: newtodayMinutes,
-      icon_right:icon.right
+      icon_right:icon.right,
+      icon_down: icon.down,     
     })
     var selected = dateList[0].year + "-" + dateList[0].newdates + "\t" + ((todayhour >= 10) ? todayhour : ("0" + todayhour)) + ":" + newtodayMinutes;
     var myEventDetail = {
@@ -60,7 +62,7 @@ Component({
     //触发日期选择弹出框
     showDate: function () {
       if (this.data.showselect) {
-        var showselect = false
+        var showselect=false
       } else {
         var showselect = true
       }
@@ -86,7 +88,7 @@ Component({
       this.setData({
         isdate: util.compareDate(selected2, todate)
       })
-
+      getApp().globalData.isdate = util.compareDate(selected2, todate);
       this.triggerEvent('bindSelect', selected4);
  
   

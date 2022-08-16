@@ -1,3 +1,2 @@
-<view class='a' style='height:{{winHeight}}rpx'>
-ad 
-</view>
+测试
+<button bindtap='text'>跳转</button>

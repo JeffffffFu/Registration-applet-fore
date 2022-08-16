@@ -9,8 +9,10 @@ page {
   background-color:#fff;
 }
 .aa{
-  height: 300rpx;
+  height: 200rpx;
   width: 530rpx;
+  color:#696969;
+  
 }
 .empyte{
   color: red;

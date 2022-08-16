@@ -1,23 +1,44 @@
-<scroll-view class='bb' style='height:{{height}}rpx' scroll-y="true">
-<view class="{{list_index.length==0?'view':'view_hide'}}">
-<text>您暂无发布或参与活动</text>
-<text>赶紧点击下方按钮发布吧！</text>
+
+<!-- 未登录 -->
+<view class="view2" wx:if="{{!load}}">
+<image style='width:300rpx;height:300rpx' src='{{icon_authorization}}'></image>
+<image style='width:300rpx;height:300rpx' src="{{icon_load}}"> </image>
 </view>
 
-<view class='match_information'  style='margin-top:30rpx' wx:for="{{list_index}}" wx:key="list_index_id"  >
+<!-- 登录成功且有比赛数据-->
+<scroll-view wx:if="{{load}}" class="{{list_index.length==0?'view_hide':'bb'}}" style='height:{{height}}rpx' scroll-y="true">
+<view class="match_information" style='margin-top:30rpx' wx:for="{{list_index}}" wx:key="list_index_id"  >
 <!-- 循环index数组 -->
 <navigator url='../match_information/match_information?id={{index}}&symbol=小程序内部流程进入&uuid={{item.uuid}}&time={{item.time}}' style='height:100%; width:100%'> 
 <view  class='theme'> 
-<text style='font-width:600rpx;font-size:40rpx;margin-top:20rpx;margin-button:20rpx; position: absolute;'>{{item.theme}}</text>
-<image  src='{{item.match_status==0?icon_toSignUp:item.match_status==1?icon_registered:item.match_status==2?icon_leaved:icon_expired}}'
- class="{{item.match_status==2?'icon1':item.match_status==0?'icon3':'icon2'}}" > </image>
+<text class="{{item.matchStatus.matchStatus==3?'color1':'color2'}}" style='font-width:600rpx;font-size:38rpx;font-weight:600;margin-top:20rpx;margin-button:20rpx; position:absolute;'>{{item.theme}}</text>
+<image  src='{{item.matchStatus.matchStatus==0?icon_toSignUp:item.matchStatus.matchStatus==1?icon_registered:item.matchStatus.matchStatus==2?icon_leaved:icon_expired}}'
+ class="{{item.matchStatus.matchStatus==2?'icon1':item.matchStatus.matchStatus==0?'icon3':'icon2'}}" > </image>
 </view>
 
 <view style='width:100%;height:1rpx;background:#DCDCDC;'></view>
-<view style='margin-top:25rpx;font-size:30rpx;font-weight:300'>{{item.time}} ({{item.week}})</view>
-<view style='margin-top:10rpx;font-size:25rpx' >{{item.address}}</view>
+
+<view class="{{item.matchStatus.matchStatus==3?'color1':'color2'}}" style='margin-top:25rpx;font-size:30rpx;font-weight:300'>{{item.time}} ({{item.week}})</view>
+<view class="{{item.matchStatus.matchStatus==3?'color1':'color2'}}" style='margin-top:10rpx;font-size:25rpx' >{{item.address}}</view>
 </navigator>
 </view>
+<view  style='margin-top:30rpx;font-size:24rpx;color:#696969;'>点击下方按钮创建活动并将创建成功的活动分享给好友报名吧！</view>
 </scroll-view>
-<button style="border-radius: 0;background:#3CB371;" type="primary" bindtap="create" class="address" > 发布活动 </button>
+
+<!-- 登录成功但无比赛数据-->
+<view  wx:if="{{load}}" class="{{list_index.length!=0?'':'view_hide'}}">
+<button  style="border-radius: 0;background:#3CB371;" type="primary" bindtap="create" class="address" > 创建活动</button>
+</view>
+
+
+<view wx:if="{{load}}" class="{{list_index.length==0?'view':'view_hide'}}">
+<image style='width:400rpx;height:400rpx' src='{{icon_authorization}}'></image>
+<text style='color:#000000;'>您当前暂无创建或参与的活动</text>
+<text style='margin-top:10px;color:#696969;font-size:30rpx'>点击下方按钮创建活动并将活动分享给好友报名吧！</text>
+<button style="width:90%;margin-top:50rpx;background:#3CB371;" type="primary" bindtap="create">创建活动</button>
+
+</view>
+
+
+
 

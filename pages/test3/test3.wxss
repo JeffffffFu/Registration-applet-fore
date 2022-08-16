@@ -3,3 +3,6 @@
   width: 600rpx;
   background-color:red;
 }
+page {
+  background-color:white;
+}

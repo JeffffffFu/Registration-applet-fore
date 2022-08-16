@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-      "my-date": "../../component/date2/date2"
+      "my-date": "../../component/date_edit/date_edit"
     }
   
 }

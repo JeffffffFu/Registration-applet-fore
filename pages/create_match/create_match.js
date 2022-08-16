@@ -1,4 +1,6 @@
 var app=getApp();
+var date = require('../../component/date/date.js');
+
 Page(
   {
     //设置变量，以便存储输入的数据
@@ -6,12 +8,14 @@ Page(
         match_theme:'',
         match_time:'',
         match_week:'',
+        deadline_time:'',
+        deadline_week:'',
         match_address:'',
         match_address_name:'',
         match_rule:'',
         match_color:'',
-        match_remarks:'',
        match_directions:'',
+       match_people:'',
         user_nickName: "微信账号登录",
         user_avatarUrl: "./user-unlogin.png",
         openid:'',
@@ -23,7 +27,18 @@ Page(
          max: 100,
        
     },
-    
+    onLoad:function(e){
+      wx.setNavigationBarTitle({
+        title: '创建活动'
+      });
+      console.log("aaa:",getApp().globalData.history)
+      //将得到的历史数据赋值
+      getApp().globalData.longitude = getApp().globalData.history[0].longitude;
+      getApp().globalData.latitude = getApp().globalData.history[0].latitude;
+      this.setData({
+        match_address: getApp().globalData.history[0].address
+      })
+    },
     // 活动详情文本框及字数限制
     limit: function (e) {
       var value = e.detail.value;
@@ -34,7 +49,8 @@ Page(
 
       this.setData({
         current: length,
-        match_directions:e.detail.value
+        match_directions:e.detail.value,
+     
       });
     },
     //比赛主题
@@ -55,10 +71,12 @@ Page(
     },
 
 
-   //备注
-    match_remarks_input: function (e) {
+  
+    //人数限制
+    match_people_input: function (e) {
+      console.log('people');
       this.setData({
-        match_remarks: e.detail.value
+        match_people: e.detail.value
       })
     },
        //点击按钮，将值传给后端
@@ -68,58 +86,78 @@ Page(
          //判断主题时间地址是否填写，进行逻辑交互处理
          if (that.data.match_theme == "" || that.data.match_time == "" || that.data.match_address == "") {
            wx.showToast({
-             title: '主题时间地点不能为空！',
+             title: '主题、时间、地点不能为空！',
+             icon: 'none',
+             duration: 2000//持续的时间
+           })
+         
+         }else if(!getApp().globalData.isdate) {
+           wx.showToast({
+             title: '所选时间早于当前！',
              icon: 'none',
              duration: 2000//持续的时间
            })
          }
          else{
-         //获取发布人信息
-         wx.getStorage({
-           key: 'userInfo',
-           success: function(res) {
+           wx.getStorage({
+             key: 'openid',
+             success: function (res) {
+               //连接mysql数据库 传送数据
+               wx.request({
+                 url: 'https://www.baoming.site/Jeff/createMatch',
+                 data: {
+                   match_theme: that.data.match_theme,
+                   match_time: that.data.match_time,
+                   match_week: that.data.match_week,
+                   deadline_time: that.data.deadline_time,
+                   deadline_week: that.data.deadline_week,
+                   match_address: that.data.match_address,
+                   match_rule: that.data.match_rule,
+                   match_directions: that.data.match_directions,
+                   match_people: that.data.match_people,
+                   openid: res.data,
+                   longitude: getApp().globalData.longitude,
+                   latitude: getApp().globalData.latitude
 
-             console.log("user_name", res.data.nickName);
-             console.log("user_url", res.data.avatarUrl);
+                 },
+                 method: 'GET',
+                 header: {
+                   'content-type': 'application/json' // 默认值
+                 },
+                 success: function (res) {
+                   console.log("敏感词检测:",res);
+                   if (res.data != 0) {
+                     wx.showToast({
+                       title: '含有敏感词汇！',
+                       icon: 'none',
+                       duration: 2000//持续的时间
+                     })                  
+                   }else{
+                     console.log("创建比赛成功，将此比赛写入数据库：", res.data);
+                     wx.navigateTo({
+                       url: '../index/index'
+                     })
+                     wx.showToast({
+                       title: '创建成功！',
+                       icon: 'success',
+                       duration: 2000//持续的时间
+                     })
+                   }
+                   },
+                 fail: function (res) {
+                   console.log(".....fail.....");
+                   //成功后才界面的跳转
 
-             //连接mysql数据库 传送数据
-             wx.request({
-               url: 'http://192.168.0.105:8080/Jeff/MyServlet?method=storage',
-               data: {
-                 match_theme: that.data.match_theme,
-                 match_time: that.data.match_time,
-                 match_week: that.data.match_week,
-                 match_address: that.data.match_address,
-                 match_address_name: that.data.match_address_name,
-                 match_rule: that.data.match_rule,
-                 match_directions: that.data.match_directions,
-                 match_remarks: that.data.match_remarks,
-                 //发布人的名字和头像
-                 user_name: res.data.nickName,
-                 user_url: res.data.avatarUrl,
-                 openid: getApp().globalData.openid,
-                 longitude: getApp().globalData.longitude,
-                 latitude: getApp().globalData.latitude
-
-               },
-               method: 'GET',
-               header: {
-                 'content-type': 'application/json' // 默认值
-               },
-               success: function (res) {
-                 console.log("创建比赛成功，将此比赛写入数据库：",res.data);
-                 wx.navigateTo({
-                   url: '../index/index'
-                 })
-               },
-               fail: function (res) {
-                 console.log(".....fail.....");
-                 //成功后才界面的跳转
-               
-               }
-             })
-           }
-         })
+                 }
+               })
+             },
+              fail: function (res){
+               console.log("用户未登录成功");
+                   //成功后才界面的跳转
+             }
+           })
+            
+         
          }                
     },
 

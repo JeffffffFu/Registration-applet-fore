@@ -1,6 +1,0 @@
-<view class='view'>
-<image class='image' src='{{icon_authorization}}'></image>
-<text style='font-size:35rpx;color:#A9A9A9'>欢迎您！允许微信授权后，体验完整功能</text>
-<button style='width:620rpx;margin-top:30rpx;'lang="zh_CN" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" type='primary'>授权登录</button>
-<button style='width:620rpx;margin-top:20rpx;'bindtap='back' type='default'>回到首页</button>
-</view>

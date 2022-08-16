@@ -1,9 +1,9 @@
 {
   "pages": [
-   
     "pages/index/index",
-   "pages/authorization/authorization",
     "pages/test3/test3",
+    
+     "pages/out/out",
     "pages/create_match/create_match",
     "pages/edit/edit",
     "pages/match_information/match_information",
@@ -14,17 +14,20 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
     "navigationBarTitleText": "一瞬报名",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "black"
   },
   "networkTimeout": {
-     "request": 1000000,
+    "request": 1000000,
     "connectSocket": 100000,
     "uploadFile": 100000,
     "downloadFile": 100000
-},
-"permission":{
-  "scope.userLocation":{
-    "desc":"你的位置信息将用于小程序接口的效果展示"
-  }
-}
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
 }

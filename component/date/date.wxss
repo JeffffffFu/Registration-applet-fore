@@ -52,7 +52,7 @@
   align-items: center;
 
 }
-.image1{
+/* .image1{
    width: 40rpx;
     height: 40rpx;
     margin-left: 220rpx;
@@ -62,5 +62,17 @@
    width: 40rpx;
     height: 40rpx;
     margin-left: 60rpx;
+    margin-top:30rpx; 
+} */
+.image1{
+   width: 40rpx;
+    height: 40rpx;
+    
+    margin-top:30rpx; 
+}
+.image2{
+   width: 40rpx;
+    height: 40rpx;
+ 
     margin-top:30rpx; 
 }

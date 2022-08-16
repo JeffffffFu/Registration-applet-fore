@@ -14,6 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '请假详情'
+    })
     this.setData({
       leave_member: JSON.parse(options.leave_member),
       leave_count: options.leave_count

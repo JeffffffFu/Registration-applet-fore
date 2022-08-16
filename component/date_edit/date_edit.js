@@ -1,6 +1,6 @@
-var util = require('../../utils/util.js');
+var util = require('../utils/util.js');
 var icon = require('../../icon/icon.js');
-var app=getApp();
+var app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -23,8 +23,9 @@ Component({
     todayminutes: "",
     showselect: false,
     isdate: true,
-    time:'',
-    icon_right:''
+    time: '',
+    icon_right: '',
+    icon_down: ''
   },
 
   ready: function () {
@@ -44,8 +45,9 @@ Component({
       minutes: minutes,
       todayhour: todayhour,
       todayminutes: newtodayMinutes,
-      time:app.globalData.time,
-      icon_right:icon.right
+      time: app.globalData.time,
+      icon_right: icon.right,
+      icon_down: icon.down,
     })
     var selected = dateList[0].year + "-" + dateList[0].newdates + "\t" + ((todayhour >= 10) ? todayhour : ("0" + todayhour)) + ":" + newtodayMinutes;
 
@@ -64,7 +66,7 @@ Component({
         var showselect = true
       }
       this.setData({
-        showselect: showselect 
+        showselect: showselect
       })
     },
 
@@ -85,7 +87,7 @@ Component({
       this.setData({
         isdate: util.compareDate(selected2, todate)
       })
-
+      getApp().globalData.isdate2 = util.compareDate(selected2, todate);
       this.triggerEvent('bindSelect', selected4);
       //将处理后的值传给bindSelect这个函数中的e里
     },
